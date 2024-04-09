@@ -1,55 +1,97 @@
 # FE_CODING_CONVENTION.md
-> IMPORTANT: Làm sao dễ Maintain nhất
 
-> IMPORTANT: KHÔNG VIẾT BIẾN, FILE & FOLDER CÓ 's' ở bất cứ đâu
+> **IMPORTANT**:
+> Code to be Maintain later
+> Variable, File, Folder **MUST NOT** contain `'s'`
+> Whole `src` **MUST NOT** exist the hyphen `-`
+
 ```
-bads: users, products, ...
+bad: users, products, ...
+
 good: user, product, ...
-or : userArray, userList, userCollection, ... (kiểu dữ liệu trả ra)
+
+or: userArray, userList, userCollection, ... (the return data types)
+
+bad: customer-report
 ```
 
-- NOTE: trong toàn bộ src không tồn tại tên biến gạch ngang exp: customer-report
+- Use [Eslint Typescript](https://typescript-eslint.io/getting-started/) format suggestion
+- Use [Prettier](https://prettier.io/docs/en/#docsNav)
+- Use [Husky](https://typicode.github.io/husky/how-to.html)
 
-- Dùng [Eslint Typescript](https://typescript-eslint.io/getting-started/) format suggestion
-    
-
-- Dùng [Prettier](https://prettier.io/docs/en/#docsNav)
-
-- Dùng [Husky](https://typicode.github.io/husky/how-to.html)
-
-- Thư mục chứa Component phải có tên giống với tên Component và phải PascalCase
+- File and Component names need to be identical.
 ```
 bads: header, headerComponent, header-component
-good: folder Header, file Header.tsx  
+good: folder: Header, file: Header.tsx  
 ```
 
-# Export Component 
-- Export components ở cuối file
+- Export to ES6
 
-Bad
+# Export Component 
+- Export components at end of file
+
+- Bad
 ```ts
-// Bad
 // Filename: userlogin.ts
 export const UserLoginNew = () => {}
 ```
 
-Good
+- Good
 ```ts
-// Good
 // Filename: UserLogin.tsx
 const UserLogin = () => {}
 export default UserLogin;
 ```
 
-# Tên Prop Component
-- phải là camelCase
+# Component Prop Name
+- Use `camelCase`
+- Must not begin with a digit
+- Must not contain special characters
+
+- Bad
+```ts
+<UserLogin user_name="John Doe" />
 ```
-bad: <UserLogin user_name="John Doe" />
-good: <UserLogin userName="John Doe" />
+
+- Good
+```ts
+<UserLogin userName="John Doe" />
 ``` 
 
-# Type hoặc Interface 
-- PascalCase
+# Tags
+- Alway use `/>` close tag if don't have children
+
+- Good
+```html
+<Foo className="stuff" />  // only have />
+```
+
+- Bad
+```html
+<Foo className="stuff"></Foo> //this have </Foo>
+```
+
+- If component have many prop, put `/>` close tag on the **new line**
+
+- Good
+```html 
+<Foo
+  className="stuff"
+  id="uniqueId"
+  dataAttribute="moreStuff"
+/>
+```
+
+- Bad
+```html 
+<Foo
+  className="stuff"
+  id="uniqueId"
+  dataAttribute="moreStuff"/>
+```
+
+# Type or Interface 
+- Use `PascalCase`
 
 ```ts
 // demo Type
@@ -84,45 +126,71 @@ const useUserLogin = ({username, password}: UseUserLoginProps): UseUserLoginRetu
 }
 ```
 
-# Tags:
-- Luôn luôn dùng tag **tự đóng** nếu không có children
+# Enum Name
+- Use `UPPER_CASE`
 ```ts
-// GOOD
-<Foo className="stuff" />  // only have />
-
-// BAD 
-<Foo className="stuff"></Foo>
-	//this have </Foo>
+export enum USER_ROLE {
+    ADMIN,
+    STAFF,
+    STUDENT
+}
 ```
 
-- Nếu component có thuộc tính nhiều dòng, đóng tag trên dòng mới
-```ts
-// GOOD 
-<Foo
-  className="stuff"
-  id="uniqueId"
-  dataAttribute="moreStuff"
-/>
+# Should use arrow function than function declaration 
 
-//BAD 
-<Foo
-  className="stuff"
-  id="uniqueId"
-  dataAttribute="moreStuff"/>
-
-```
-
-# Nên sử dụng arrow function thay vì dùng từ khóa function  
-good
+- Good
 ```ts 
 const getUser = () => {
     // logic
 }
 ```
-bad
+
+- Bad
 ```ts
 function getUser() {
     // logic
+}
+```
+
+# Handler Method
+- Naming: `"handle" + TriggerEvent`. 
+	- exp: handleClick
+
+> IMPORTANT: Use arrow function for 'this' to be in correct context
+
+# Function
+- Use `camelCase`
+- **Must start with a verb**
+- Must not begin with a digit.
+- Must not contain special characters
+- Good:
+```ts
+function getUser() {}
+```
+
+- Bad
+```ts
+function get_user() {}
+function get-user() {}
+```
+
+# Function Documentation
+- **After each function update need to update the version**
+- Just write full lowercase, use Upper case only for 
+```ts
+/**
+ * check if a number is a prime 
+ * @param {number} num - number need to check
+ * @returns {Boolean} - true or false
+ * @example isPrime(5)
+ * @description
+ * this function check whether a number is a prime number. return false if the input is not a integer
+ * @author hoangnn
+ * @version 0.0.1
+ */
+function isPrime(num: number): Boolean {
+  // Logic 
+  // ...
 }
 ```
 
@@ -150,135 +218,125 @@ import { ToastContainer } from 'react-toastify'
 const Login = lazy(() => import('@pages/Login'))
 ```
 
-# Handler Method
+# Interact between FE and BE
+> JSON property must follow the **snake_case** to distinguish it from Class properties
 
-- Đặt tên method theo cú pháp: `"handle" + triggering event`. 
-	- exp: handleClick
-
-> IMPORTANT: Sử dụng arrow function để đảm bảo 'this' luôn trỏ đến context đúng
-
-# Tên Function
-- camelCase
-- không dùng số
-- không dùng kí tự đặc biệt
-```
-bad: get_user, get-user
-good: getUser
-```
-
-# Tương tác FE và BE
-- Tương tác json thì property phải viết snake_case để phân biệt với property của Class
-bad
+- Good
 ```json
 {
-    entityProperty: 'value'
+  "entity_property": "value"
 }
 ```
 
-good
+- Bad
 ```json
 {
-	entity_property: 'value' 
+  "entityProperty": "value"
 }
 ```
 
-exp
-```json 
+- Exp
+```json
 {
-    "status": 200,
-    "message": "success",
-    "data": {
-        "user_id": "123",   
-        "user_name": "John Doe",     
-    }
-}
-```
-# Tên Folder (entity)
-- camelCase
-- không dùng số ở kí tự đầu tiên
-- không dùng kí tự đặc biệt
-```
-bad: User, User-Report, User_Report, UserReport
-good: user, userReport, userReport
-```
-
-# Tên File
-- camelCase
-```
-bad: Users, products.Controller, ...
-good: user.middleware.ts, userReport.middleware.ts, product.controller.ts
-```    
-
-# Tên Class
-- PascalCase
-- không dùng số
-- không dùng kí tự đặc biệt
-```
-bad: user, userReport, user_report
-good: User, UserReport
-```
-# Properties của Class
-- camelCase 
-- không dùng số 
-- không dùng kí tự đặc biệt
-```
-bad: user_id, user_name, user-name
-good: userId, userName
-```
-# Tên enum
-- UPPER_CASE
-``` ts
-export enum USER_ROLE {
-    ADMIN,
-    STAFF,
-    STUDENT
+  "status": 200,
+  "message": "success",
+  "data": {
+    "user_id": "123",
+    "user_name": "John Doe"
+  }
 }
 ```
 
+# Folder Name (entity)
+- Use `camelCase`
+- Must not begin with a digit
+- Must not contain special characters
+```
+bad: User, User-Report, User_Report, UserReport, @userReport
+good: user, userReport
+```
 
-# Function Documentation
-- sau mỗi lần update function phải cập nhật version
+# File Name
+- Use `camelCase`
+- Must not begin with a digit
+- Must not contain special characters
+- Good
 ```ts
-/**
- * Kiểm tra xem một số có phải là số nguyên tố hay không.
- * @param {number} num - Số cần kiểm tra.
- * @returns {boolean} - True nếu số nguyên tố, false nếu không phải.
- * @example isPrime(5)
- * @description
- * Hàm này kiểm tra xem số được cung cấp có phải là số nguyên tố hay không.
- * Số nguyên tố là số chỉ chia hết cho 1 và chính nó.
- * @author [Tên tác giả]
- * @version 0.0.1
- */
-function isPrime(num) {
-  // Logic kiểm tra số nguyên tố ở đây
-  // ...
-}
+user.middleware.ts, userReport.middleware.ts, product.controller.ts
 ```
+
+- Bad
+```ts
+Users, products.Controller, ...
+```
+
+# Class Name
+- Use `PascalCase`
+- Must not begin with a digit
+- Must not contain special characters
+- Good
+```ts
+User, UserReport
+```
+
+- Bad
+```ts
+user, userReport, user_report
+```
+
+# Properties of Class
+- Use `PascalCase`
+- Must not begin with a digit
+- Must not contain special characters
+- Good
+```ts
+userId, userName
+```
+
+- Bad
+```ts
+user_id, user_name, user-name
+```
+
+
+# Variables
+- Variable names can contain alphabets and numeric digits.
+- They cannot contain spaces and special characters, except the underscore (\_) and the dollar ($) sign.
+- Variable names cannot begin with a digit.
+
+- Good
+```js
+const userName = "JohnDoe";
+```
+
+- Bad
+```js
+const 1_userName = "JohnDoe";
+```
+
 
 # Route
-- phải 
+- Must
 ```ts
 /*
 desc: add new course
 method: POST
 path: /course/add-new-course
 headers: {
-		params: ... (có hoặc không)
-		query: ... (có hoặc không)
-		Authorization: Bearer <access_token>
+	params: ... (require or not)
+	query: ... (require or not)
+	Authorization: Bearer <access_token>
 }
 body: AddNewCourseReqBodyType (syntax feature+ReqBodyType)
 */
 courseRouter.post(
-	'/add-new-course',
-	accessTokenValidator,
-	checkRole([UserRole.Admin]),
-	addNewCourseMiddleware,
-	addNewCourseController
-)
-export default courseRouter
+  "/add-new-course",
+  accessTokenValidator,
+  checkRole([UserRole.Admin]),
+  addNewCourseMiddleware,
+  addNewCourseController
+);
+export default courseRouter;
 ```
 
-# Ngoại lệ
-
+# Exception
