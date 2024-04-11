@@ -1,0 +1,80 @@
+{
+  "plugins": ["react", "prettier", "@typescript-eslint", "@stylistic"],
+  "settings": {
+    //need to set react version for eslint-plugin-react, doesn't auto detect by default
+    "react": {
+      "version": "detect"
+    }
+  },
+  "ignorePatterns": ["node_modules/", "dist/", "server.js", "*.d.ts", "*.config.ts"],
+  "extends": [
+    // extends mean shareable config from devDependencies that community have created or recommended
+    // default
+    "eslint:recommended", //eslint default
+
+    // plugin
+    // prettier
+    "plugin:prettier/recommended", //eslint-PLUGIN-prettier
+    // react
+    "plugin:react/recommended", //eslint-plugin-react
+    "plugin:react/jsx-runtime", //eslint-plugin-react
+    "plugin:react-hooks/recommended", //eslint-plugin-react-hooks
+    // typescript eslint
+    // "plugin:@typescript-eslint/recommended", //@typescript-eslint/eslint-plugin === many are deprecated so i turn off
+    "plugin:@typescript-eslint/stylistic", //@typescript-eslint/eslint-plugin
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked",
+    // eslint stylistic
+    "plugin:@stylistic/recommended-extends", //@stylistic/eslint-plugin
+    "love", //eslint-config-love === pre-config
+    "prettier" //eslint-CONFIG-prettier === this config only turns **rules** key below off (turn off eslint rules that conflict with prettier), turn on prettier/prettier rules
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": { "sourceType": "module", "ecmaVersion": "latest" },
+  "rules": {
+    // rule that override the extends config above
+    // normal code
+    "prettier/prettier": [
+      "error",
+      {},
+      {
+        "usePrettierrc": true
+      }
+    ],
+    "prefer-const": "error",
+    "no-var": "error",
+    // react
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn", //check useEffect
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true,
+        "html": true
+      }
+    ],
+    // typescript
+    "@typescript-eslint/array-type": "error",
+    "@typescript-eslint/return-await": "error",
+    "@typescript-eslint/consistent-type-definitions": "off",
+    // jsx
+    "@stylistic/semi": ["error", "always"],
+    "@stylistic/arrow-parens": ["error", "always"],
+    "@stylistic/member-delimiter-style": [
+      "error",
+      {
+        "multiline": { "delimiter": "semi", "requireLast": true },
+        "singleline": { "delimiter": "semi", "requireLast": false }
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@stylistic/jsx-one-expression-per-line": "warn"
+      }
+    }
+  ]
+}
