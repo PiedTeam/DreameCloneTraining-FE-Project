@@ -70,7 +70,7 @@ PageHeader.tsx, UserLoginForm.tsx;
 - Bad
 
 ```ts
-page-header.tsx, user-login-form.tsx;
+page - header.tsx, user - login - form.tsx;
 ```
 
 # Tag Class Name
@@ -207,6 +207,24 @@ function getUser() {
 }
 ```
 
+# Custom hook
+
+- Bad
+
+```ts
+const hookQueryConfig = () => {
+  //logic
+};
+```
+
+- Good
+
+```ts
+const useQueryConfig = () => {
+  //logic
+};
+```
+
 # Function
 
 - Use `camelCase`
@@ -322,32 +340,6 @@ const userName = "JohnDoe";
 
 ```js
 const 1_userName = "JohnDoe";
-```
-
-# Route
-
-- Must
-
-```ts
-/*
-desc: add new course
-method: POST
-path: /course/add-new-course
-headers: {
-	params: ... (require or not)
-	query: ... (require or not)
-	Authorization: Bearer <access_token>
-}
-body: AddNewCourseReqBodyType (syntax feature+ReqBodyType)
-*/
-courseRouter.post(
-  "/add-new-course",
-  accessTokenValidator,
-  checkRole([UserRole.Admin]),
-  addNewCourseMiddleware,
-  addNewCourseController
-);
-export default courseRouter;
 ```
 
 # Exception
