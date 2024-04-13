@@ -1,6 +1,6 @@
 import AuthenticationLayout from '../../layout/AuthenticationLayout/AuthenticationLayout';
 
-const HomePage = () => {
+const HomePage = (): JSX.Element => {
   return (
     <AuthenticationLayout>
       <div>HomePage</div>

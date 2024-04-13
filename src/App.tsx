@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg';
 import './App.css';
 import { Button, FloatButton } from 'antd';
 
-function App() {
+function App(): JSX.Element {
   const [count, setCount] = useState(0);
   return (
     <>
