@@ -1,13 +1,14 @@
 {
   "$schema": "https://json.schemastore.org/eslintrc",
   "root": true,
-  "plugins": ["react", "prettier", "@typescript-eslint", "@stylistic"],
+  "plugins": ["react", "prettier", "@typescript-eslint", "@stylistic", "import", "promise", "jsx-a11y"],
   "ignorePatterns": ["node_modules/", "dist/", "server.js", "*.d.ts", "*.config.ts"],
   "extends": [
     // extends mean shareable config from devDependencies that community have created or recommended
     // default
-    "eslint:recommended", //eslint default
+    "eslint:recommended", //@eslint/js
     "plugin:@typescript-eslint/recommended", //@typescript-eslint/eslint-plugin
+    "plugin:promise/recommended", //eslint-plugin-promise
     // plugin
     // prettier
     // "plugin:prettier/recommended", //eslint-PLUGIN-prettier
@@ -16,19 +17,19 @@
     "plugin:@typescript-eslint/stylistic", //@typescript-eslint/eslint-plugin
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",
+    "plugin:import/recommended", //eslint-plugin-import
+    "plugin:import/typescript", //eslint-plugin-import
     // eslint stylistic
     "plugin:@stylistic/recommended-extends", //@stylistic/eslint-plugin
     "prettier", //eslint-CONFIG-prettier === this config only turns **rules** key below off (turn off eslint rules that conflict with prettier), turn on prettier/prettier rules
     // react
+    "plugin:jsx-a11y/recommended", //eslint-plugin-jsx-a11y
     "plugin:react/recommended", //eslint-plugin-react
     "plugin:react/jsx-runtime", //eslint-plugin-react
     "plugin:react-hooks/recommended" //eslint-plugin-react-hooks
   ],
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": "latest",
-    "project": "./tsconfig.json"
+  "parserOptions": { "sourceType": "module", "ecmaVersion": "latest", "project": "./tsconfig.json"
   },
   "rules": {
     // rule that override the extends config above
@@ -70,6 +71,13 @@
     //need to set react version for eslint-plugin-react, doesn't auto detect by default
     "react": {
       "version": "detect"
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": true, 
+      "node": true
     }
   }
 }
