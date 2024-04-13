@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json.schemastore.org/eslintrc",
+  "root": true,
   "plugins": ["react", "prettier", "@typescript-eslint", "@stylistic"],
   "settings": {
     //need to set react version for eslint-plugin-react, doesn't auto detect by default
@@ -11,7 +13,6 @@
     // extends mean shareable config from devDependencies that community have created or recommended
     // default
     "eslint:recommended", //eslint default
-
     // plugin
     // prettier
     "plugin:prettier/recommended", //eslint-PLUGIN-prettier
@@ -34,15 +35,6 @@
   "rules": {
     // rule that override the extends config above
     // normal code
-    "prettier/prettier": [
-      "error",
-      {},
-      {
-        "usePrettierrc": true
-      }
-    ],
-    "prefer-const": "error",
-    "no-var": "error",
     // react
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn", //check useEffect
@@ -66,7 +58,17 @@
         "multiline": { "delimiter": "semi", "requireLast": true },
         "singleline": { "delimiter": "semi", "requireLast": false }
       }
-    ]
+    ],
+    // override prettier
+    "prettier/prettier": [
+      "error",
+      {},
+      {
+        "usePrettierrc": true
+      }
+    ],
+    "prefer-const": "error",
+    "no-var": "error"
   },
   "overrides": [
     {
