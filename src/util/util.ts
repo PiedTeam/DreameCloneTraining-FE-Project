@@ -2,8 +2,8 @@ export function checkPrimeNumber(number: number): boolean {
   if (number <= 1) {
     return false;
   }
-  for (let i = 2; i <= Math.sqrt(number); i++) {
-    if (number % i === 0) {
+  for (let index = 0; index < number - 1; index++) {
+    if (number % index === 0) {
       return false;
     }
   }
