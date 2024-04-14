@@ -1,40 +1,53 @@
 {
   "$schema": "https://json.schemastore.org/eslintrc",
   "root": true,
-  "plugins": ["react", "prettier", "@typescript-eslint", "@stylistic"],
-  "settings": {
-    //need to set react version for eslint-plugin-react, doesn't auto detect by default
-    "react": {
-      "version": "detect"
-    }
-  },
+  "plugins": ["react", "prettier", "@typescript-eslint", "@stylistic", "import", "promise", "jsx-a11y"],
   "ignorePatterns": ["node_modules/", "dist/", "server.js", "*.d.ts", "*.config.ts"],
   "extends": [
     // extends mean shareable config from devDependencies that community have created or recommended
     // default
-    "eslint:recommended", //eslint default
+    "eslint:recommended", //@eslint/js
+    "plugin:@typescript-eslint/recommended", //@typescript-eslint/eslint-plugin
+    "plugin:promise/recommended", //eslint-plugin-promise
     // plugin
     // prettier
-    "plugin:prettier/recommended", //eslint-PLUGIN-prettier
-    // react
-    "plugin:react/recommended", //eslint-plugin-react
-    "plugin:react/jsx-runtime", //eslint-plugin-react
-    "plugin:react-hooks/recommended", //eslint-plugin-react-hooks
+    // "plugin:prettier/recommended", //eslint-PLUGIN-prettier
     // typescript eslint
-    // "plugin:@typescript-eslint/recommended", //@typescript-eslint/eslint-plugin === many are deprecated so i turn off
+    "plugin:@typescript-eslint/recommended", //@typescript-eslint/eslint-plugin
     "plugin:@typescript-eslint/stylistic", //@typescript-eslint/eslint-plugin
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",
+    "plugin:import/recommended", //eslint-plugin-import
+    "plugin:import/typescript", //eslint-plugin-import
     // eslint stylistic
     "plugin:@stylistic/recommended-extends", //@stylistic/eslint-plugin
-    "love", //eslint-config-love === pre-config
-    "prettier" //eslint-CONFIG-prettier === this config only turns **rules** key below off (turn off eslint rules that conflict with prettier), turn on prettier/prettier rules
+    "prettier", //eslint-CONFIG-prettier === this config only turns **rules** key below off (turn off eslint rules that conflict with prettier), turn on prettier/prettier rules
+    // react
+    "plugin:jsx-a11y/recommended", //eslint-plugin-jsx-a11y
+    "plugin:react/recommended", //eslint-plugin-react
+    "plugin:react/jsx-runtime", //eslint-plugin-react
+    "plugin:react-hooks/recommended" //eslint-plugin-react-hooks
   ],
   "parser": "@typescript-eslint/parser",
-  "parserOptions": { "sourceType": "module", "ecmaVersion": "latest" },
+  "parserOptions": { "sourceType": "module", "ecmaVersion": "latest", "project": "./tsconfig.json"
+  },
   "rules": {
     // rule that override the extends config above
     // normal code
+    // typescript
+    "@typescript-eslint/explicit-function-return-type": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "error",
+    "@typescript-eslint/array-type": "error",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@stylistic/semi": ["error", "always"],
+    "@stylistic/arrow-parens": ["error", "always"],
+    "@stylistic/member-delimiter-style": [
+      "error",
+      {
+        "multiline": { "delimiter": "semi", "requireLast": true },
+        "singleline": { "delimiter": "semi", "requireLast": false }
+      }
+    ],
     // react
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn", //check useEffect
@@ -45,20 +58,6 @@
         "html": true
       }
     ],
-    // typescript
-    "@typescript-eslint/array-type": "error",
-    "@typescript-eslint/return-await": "error",
-    "@typescript-eslint/consistent-type-definitions": "off",
-    // jsx
-    "@stylistic/semi": ["error", "always"],
-    "@stylistic/arrow-parens": ["error", "always"],
-    "@stylistic/member-delimiter-style": [
-      "error",
-      {
-        "multiline": { "delimiter": "semi", "requireLast": true },
-        "singleline": { "delimiter": "semi", "requireLast": false }
-      }
-    ],
     // override prettier
     "prettier/prettier": [
       "error",
@@ -66,17 +65,19 @@
       {
         "usePrettierrc": true
       }
-    ],
-    "prefer-const": "error",
-    "no-var": "error"
+    ]
   },
-  "overrides": [
-    {
-      "files": ["*.tsx"],
-      "rules": {
-        "@typescript-eslint/explicit-function-return-type": "off",
-        "@stylistic/jsx-one-expression-per-line": "warn"
-      }
+  "settings": {
+    //need to set react version for eslint-plugin-react, doesn't auto detect by default
+    "react": {
+      "version": "detect"
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": true, 
+      "node": true
     }
-  ]
+  }
 }

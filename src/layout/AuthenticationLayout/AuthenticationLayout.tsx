@@ -1,8 +1,8 @@
-type PropType = {
+interface PropType {
   children: React.ReactNode;
-};
+}
 
-const AuthenticationLayout = (props: PropType) => {
+const AuthenticationLayout = (props: PropType): JSX.Element => {
   return (
     <div>
       AuthenticationLayout
