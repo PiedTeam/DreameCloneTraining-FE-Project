@@ -2,6 +2,7 @@ import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import './App.css';
 import { Button, FloatButton } from 'antd';
+import FormUploadFile from './components/FormUploadFile/FormUploadFile';
 
 function App(): JSX.Element {
   const [count, setCount] = useState(0);
@@ -17,6 +18,9 @@ function App(): JSX.Element {
       </div>
       <h1>Vite + React ahihi</h1>
       <Button type="primary">Primary Button</Button>
+      <div>
+        <FormUploadFile />
+      </div>
       <div className="card">
         <button
           onClick={() => {

@@ -1,0 +1,89 @@
+import { useState } from 'react';
+import { InboxOutlined } from '@ant-design/icons';
+import type { FormProps, UploadProps } from 'antd';
+import { Button, message, Space, Upload, Form } from 'antd';
+import { UploadFileReturn, uploadFile } from '../../service/api';
+import { AxiosResponse } from 'axios';
+
+interface NormFileType {
+  fileList: File[];
+}
+
+interface FieldType {
+  fileList: File[];
+}
+
+const { Dragger } = Upload;
+const { Item } = Form;
+
+const formItemLayout = {
+  labelCol: { span: 6 },
+  wrapperCol: { span: 14 },
+};
+
+const beforeUpload = (): boolean => false;
+
+const getFile = (e: NormFileType): File[] | undefined => {
+  console.log('Upload event:', e);
+  return e.fileList;
+};
+
+const uploadProps: UploadProps = {
+  name: 'file',
+  multiple: true,
+  maxCount: 1,
+  beforeUpload,
+};
+
+const FormUploadFile: React.FC = () => {
+  const [isAllowSubmit, setIsAllowSubmit] = useState<boolean>(false);
+  console.log(isAllowSubmit);
+
+  const onFinish: FormProps<FieldType>['onFinish'] = (values: FieldType) => {
+    setIsAllowSubmit((prevIsAllowSubmit) => !prevIsAllowSubmit);
+    try {
+      const data = (async (): Promise<AxiosResponse<UploadFileReturn>> => {
+        const data = await uploadFile(values.fileList[0]);
+        return data;
+      })();
+      console.log(data);
+      message.success('Upload file success')();
+    } catch (error) {
+      message.error('Faild to upload file')();
+      console.log('error', error);
+    } finally {
+      setIsAllowSubmit(false);
+    }
+  };
+
+  return (
+    <Form name="validate_other" {...formItemLayout} onFinish={onFinish} style={{ maxWidth: 600 }}>
+      <Item<FieldType>
+        label="Dragger"
+        name="fileList"
+        valuePropName="fileList"
+        getValueFromEvent={getFile}
+        rules={[{ required: true, message: 'Please select file to upload' }]}
+      >
+        <Dragger {...uploadProps}>
+          <p className="ant-upload-drag-icon">
+            <InboxOutlined />
+          </p>
+          <p className="ant-upload-text">Click or drag file to this area to upload</p>
+          <p className="ant-upload-hint">Support for a single or bulk upload.</p>
+        </Dragger>
+      </Item>
+
+      <Item wrapperCol={{ span: 12, offset: 6 }}>
+        <Space>
+          <Button type="primary" htmlType="submit" disabled={isAllowSubmit}>
+            Submit
+          </Button>
+          <Button htmlType="reset">reset</Button>
+        </Space>
+      </Item>
+    </Form>
+  );
+};
+
+export default FormUploadFile;

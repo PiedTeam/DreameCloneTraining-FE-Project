@@ -29,8 +29,7 @@
     "plugin:react-hooks/recommended" //eslint-plugin-react-hooks
   ],
   "parser": "@typescript-eslint/parser",
-  "parserOptions": { "sourceType": "module", "ecmaVersion": "latest", "project": "./tsconfig.json"
-  },
+  "parserOptions": { "sourceType": "module", "ecmaVersion": "latest", "project": "./tsconfig.json" },
   "rules": {
     // rule that override the extends config above
     // normal code
@@ -41,6 +40,7 @@
     "@typescript-eslint/no-unused-vars": "warn",
     "@stylistic/semi": ["error", "always"],
     "@stylistic/arrow-parens": ["error", "always"],
+    "@stylistic/brace-style": ["error", "1tbs", { "allowSingleLine": true }],
     "@stylistic/member-delimiter-style": [
       "error",
       {
@@ -76,7 +76,7 @@
       "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
-      "typescript": true, 
+      "typescript": true,
       "node": true
     }
   }
