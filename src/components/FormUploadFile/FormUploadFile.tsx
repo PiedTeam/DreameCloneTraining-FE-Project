@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { InboxOutlined } from '@ant-design/icons';
-import type { FormProps, UploadProps } from 'antd';
+import type { UploadProps } from 'antd';
 import { Button, message, Space, Upload, Form } from 'antd';
-import { UploadFileReturn, uploadFile } from '../../service/api';
-import { AxiosResponse } from 'axios';
+import { uploadFile } from '../../service/api';
 
 interface NormFileType {
   fileList: File[];
@@ -37,23 +35,21 @@ const uploadProps: UploadProps = {
 
 const FormUploadFile: React.FC = () => {
   const [isAllowSubmit, setIsAllowSubmit] = useState<boolean>(false);
-  console.log(isAllowSubmit);
 
-  const onFinish: FormProps<FieldType>['onFinish'] = (values: FieldType) => {
+  const onFinish = (values: FieldType): void => {
     setIsAllowSubmit((prevIsAllowSubmit) => !prevIsAllowSubmit);
-    try {
-      const data = (async (): Promise<AxiosResponse<UploadFileReturn>> => {
+    (async (): Promise<void> => {
+      try {
         const data = await uploadFile(values.fileList[0]);
-        return data;
-      })();
-      console.log(data);
-      message.success('Upload file success')();
-    } catch (error) {
-      message.error('Faild to upload file')();
-      console.log('error', error);
-    } finally {
-      setIsAllowSubmit(false);
-    }
+        console.log(data);
+        message.success('Upload file success');
+      } catch (error) {
+        message.error('Faild to upload file');
+        console.log('error', error);
+      } finally {
+        setIsAllowSubmit(false);
+      }
+    })();
   };
 
   return (
@@ -66,9 +62,9 @@ const FormUploadFile: React.FC = () => {
         rules={[{ required: true, message: 'Please select file to upload' }]}
       >
         <Dragger {...uploadProps}>
-          <p className="ant-upload-drag-icon">
+          {/* <p className="ant-upload-drag-icon">
             <InboxOutlined />
-          </p>
+          </p> */}
           <p className="ant-upload-text">Click or drag file to this area to upload</p>
           <p className="ant-upload-hint">Support for a single or bulk upload.</p>
         </Dragger>
