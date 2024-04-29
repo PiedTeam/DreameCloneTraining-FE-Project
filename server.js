@@ -1,9 +1,11 @@
 import fs from 'node:fs/promises';
 import express from 'express';
+import { config } from 'dotenv';
+config();
 
 // Constants
 const isProduction = process.env.NODE_ENV === 'production';
-const port = process.env.PORT || 5176;
+const port = process.env.PORT_SERVER || 5176;
 const base = process.env.BASE || '/';
 
 // Cached production assets
@@ -63,5 +65,6 @@ app.use('*', async (req, res) => {
 
 // Start http server
 app.listen(port, () => {
+  console.log(`Server is running in ${isProduction ? 'production' : 'development'} mode`);
   console.log(`Server started at http://localhost:${port}`);
 });

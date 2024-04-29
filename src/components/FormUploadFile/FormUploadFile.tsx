@@ -47,8 +47,8 @@ const FormUploadFile: React.FC = () => {
         console.log(data);
         message.success('Upload file success');
       } catch (error) {
-        message.error('Faild to upload file');
-        console.log('error');
+        message.error('Failed to upload file');
+        console.log('error', error);
       } finally {
         setIsAllowSubmit(false);
       }
@@ -78,7 +78,7 @@ const FormUploadFile: React.FC = () => {
           <Button type="primary" htmlType="submit" disabled={isAllowSubmit}>
             Submit
           </Button>
-          <Button htmlType="reset">reset</Button>
+          <Button htmlType="reset">Reset</Button>
         </Space>
       </Item>
     </Form>
