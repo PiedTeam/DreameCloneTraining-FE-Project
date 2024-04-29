@@ -40,10 +40,12 @@ const FormUploadFile: React.FC = () => {
 
   const onFinish = (values: FieldType): void => {
     console.log(values);
+    // Prevent multiple submit
     setIsAllowSubmit((prevIsAllowSubmit) => !prevIsAllowSubmit);
+    // Upload file
     (async (): Promise<void> => {
       try {
-        const data = await uploadFile(values.myFile.originFileObj);
+        const data = await uploadFile(values);
         console.log(data);
         message.success('Upload file success');
       } catch (error) {
