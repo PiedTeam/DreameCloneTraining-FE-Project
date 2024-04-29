@@ -6,6 +6,6 @@ export interface UploadFileReturn {
   data: string;
 }
 export const uploadFile = async (file: File): Promise<AxiosResponse<UploadFileReturn>> => {
-  const res = await axios.post(`http://localhost:4000/file/upload`, file);
+  const res = await axios.post(`https://dreameclonetraining-be-project.onrender.com/file/upload`, file);
   return res;
 };

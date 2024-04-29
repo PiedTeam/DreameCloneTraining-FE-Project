@@ -8,7 +8,9 @@ interface NormFileType {
 }
 
 interface FieldType {
-  fileList: File[];
+  myFile: {
+    originFileObj: File;
+  };
 }
 
 const { Dragger } = Upload;
@@ -21,9 +23,9 @@ const formItemLayout = {
 
 const beforeUpload = (): boolean => false;
 
-const getFile = (e: NormFileType): File[] | undefined => {
+const getFile = (e: NormFileType): File => {
   console.log('Upload event:', e);
-  return e.fileList;
+  return e.fileList[0];
 };
 
 const uploadProps: UploadProps = {
@@ -37,15 +39,16 @@ const FormUploadFile: React.FC = () => {
   const [isAllowSubmit, setIsAllowSubmit] = useState<boolean>(false);
 
   const onFinish = (values: FieldType): void => {
+    console.log(values);
     setIsAllowSubmit((prevIsAllowSubmit) => !prevIsAllowSubmit);
     (async (): Promise<void> => {
       try {
-        const data = await uploadFile(values.fileList[0]);
+        const data = await uploadFile(values.myFile.originFileObj);
         console.log(data);
         message.success('Upload file success');
       } catch (error) {
         message.error('Faild to upload file');
-        console.log('error', error);
+        console.log('error');
       } finally {
         setIsAllowSubmit(false);
       }
@@ -56,8 +59,8 @@ const FormUploadFile: React.FC = () => {
     <Form name="validate_other" {...formItemLayout} onFinish={onFinish} style={{ maxWidth: 600 }}>
       <Item<FieldType>
         label="Dragger"
-        name="fileList"
-        valuePropName="fileList"
+        name="myFile"
+        valuePropName="myFile"
         getValueFromEvent={getFile}
         rules={[{ required: true, message: 'Please select file to upload' }]}
       >
