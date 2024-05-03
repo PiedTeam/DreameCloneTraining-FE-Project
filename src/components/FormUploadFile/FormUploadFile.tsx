@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import type { UploadProps } from 'antd';
 import { Button, message, Space, Upload, Form } from 'antd';
-import { uploadFile } from '../../service/api';
+import { AxiosErrorData, uploadFile } from '../../service/api';
+import { AxiosError } from 'axios';
 
 interface NormFileType {
   fileList: File[];
 }
 
 interface FieldType {
-  fileList: File[];
+  myFile: {
+    originFileObj: File;
+  };
 }
 
 const { Dragger } = Upload;
@@ -21,9 +24,9 @@ const formItemLayout = {
 
 const beforeUpload = (): boolean => false;
 
-const getFile = (e: NormFileType): File[] | undefined => {
-  console.log('Upload event:', e);
-  return e.fileList;
+const getFile = (e: NormFileType): File => {
+  // console.log('Upload event:', e);
+  return e.fileList[0];
 };
 
 const uploadProps: UploadProps = {
@@ -37,15 +40,25 @@ const FormUploadFile: React.FC = () => {
   const [isAllowSubmit, setIsAllowSubmit] = useState<boolean>(false);
 
   const onFinish = (values: FieldType): void => {
+    // console.log(values);
+    // Prevent multiple submit
     setIsAllowSubmit((prevIsAllowSubmit) => !prevIsAllowSubmit);
+    // Upload file
     (async (): Promise<void> => {
       try {
-        const data = await uploadFile(values.fileList[0]);
-        console.log(data);
+        const repsoneUpload = await uploadFile(values);
+        // console.log(data);
+        // handle success @hoangday185
         message.success('Upload file success');
       } catch (error) {
-        message.error('Faild to upload file');
-        console.log('error', error);
+        if (error instanceof AxiosError) {
+          const axiosErrorData = error?.response?.data as AxiosErrorData;
+          message.error(axiosErrorData.message ?? 'Failed to upload file');
+        } else {
+          message.error('Failed to upload file');
+          // console.log(error);
+          // message.error(error.);
+        }
       } finally {
         setIsAllowSubmit(false);
       }
@@ -56,8 +69,8 @@ const FormUploadFile: React.FC = () => {
     <Form name="validate_other" {...formItemLayout} onFinish={onFinish} style={{ maxWidth: 600 }}>
       <Item<FieldType>
         label="Dragger"
-        name="fileList"
-        valuePropName="fileList"
+        name="myFile"
+        valuePropName="myFile"
         getValueFromEvent={getFile}
         rules={[{ required: true, message: 'Please select file to upload' }]}
       >
@@ -75,7 +88,7 @@ const FormUploadFile: React.FC = () => {
           <Button type="primary" htmlType="submit" disabled={isAllowSubmit}>
             Submit
           </Button>
-          <Button htmlType="reset">reset</Button>
+          <Button htmlType="reset">Reset</Button>
         </Space>
       </Item>
     </Form>
