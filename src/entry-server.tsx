@@ -1,12 +1,15 @@
 /* eslint-disable import/default */
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom/server';
 import App from './App';
 
-export function render(): { html: string } {
+export function render(url: string): { html: string } {
   const html = ReactDOMServer.renderToString(
     <React.StrictMode>
-      <App />
+      <StaticRouter location={url}>
+        <App />
+      </StaticRouter>
     </React.StrictMode>,
   );
   return { html };
