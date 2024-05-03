@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import type { UploadProps } from 'antd';
 import { Button, message, Space, Upload, Form } from 'antd';
-import { uploadFile } from '../../service/api';
+import { AxiosErrorData, uploadFile } from '../../service/api';
+import { AxiosError } from 'axios';
 
 interface NormFileType {
   fileList: File[];
@@ -24,7 +25,7 @@ const formItemLayout = {
 const beforeUpload = (): boolean => false;
 
 const getFile = (e: NormFileType): File => {
-  console.log('Upload event:', e);
+  // console.log('Upload event:', e);
   return e.fileList[0];
 };
 
@@ -39,18 +40,25 @@ const FormUploadFile: React.FC = () => {
   const [isAllowSubmit, setIsAllowSubmit] = useState<boolean>(false);
 
   const onFinish = (values: FieldType): void => {
-    console.log(values);
+    // console.log(values);
     // Prevent multiple submit
     setIsAllowSubmit((prevIsAllowSubmit) => !prevIsAllowSubmit);
     // Upload file
     (async (): Promise<void> => {
       try {
-        const data = await uploadFile(values);
-        console.log(data);
+        const repsoneUpload = await uploadFile(values);
+        // console.log(data);
+        // handle success @hoangday185
         message.success('Upload file success');
       } catch (error) {
-        message.error('Failed to upload file');
-        console.log('error', error);
+        if (error instanceof AxiosError) {
+          const axiosErrorData = error?.response?.data as AxiosErrorData;
+          message.error(axiosErrorData.message ?? 'Failed to upload file');
+        } else {
+          message.error('Failed to upload file');
+          // console.log(error);
+          // message.error(error.);
+        }
       } finally {
         setIsAllowSubmit(false);
       }

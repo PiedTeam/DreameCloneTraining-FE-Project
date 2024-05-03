@@ -19,11 +19,16 @@ interface FieldType {
 export const uploadFile = async (file: FieldType): Promise<AxiosResponse<UploadFileReturn>> => {
   console.log('mode: ', import.meta.env.MODE);
   console.log('backendURL: ', backendURL);
-  const res = await axios.postForm(`${backendURL}/file/upload`, file);
-  // const res = await axios.post(`${backendURL}/file/upload`, file, {
-  //   headers: {
-  //     'Content-Type': 'multipart/form-data',
-  //   },
-  // });
+  const formData = new FormData();
+  formData.append('myFile', file.myFile.originFileObj);
+  const res = await axios.post(`${backendURL}/file/upload`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
   return res;
 };
+
+export interface AxiosErrorData {
+  message: string;
+}
