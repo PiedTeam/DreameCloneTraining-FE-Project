@@ -29,6 +29,18 @@ const navItems: NavItem[] = [
     label: 'Settings',
     key: '/setting',
   },
+  {
+    label: 'List new product',
+    key: '/list-new-product',
+  },
+  {
+    label: 'List update product',
+    key: '/list-update-product',
+  },
+  {
+    label: 'List error product',
+    key: '/list-error-product',
+  },
 ];
 
 const PageHeader = (): JSX.Element => {
@@ -46,7 +58,7 @@ const PageHeader = (): JSX.Element => {
         mode="horizontal"
         defaultSelectedKeys={['2']}
         items={navItems}
-        style={{ flex: 1, minWidth: 0, justifyContent: 'flex-end' }}
+        style={{ flex: 1, minWidth: 0, justifyContent: 'space-around' }}
         onClick={({ key }) => {
           navigate(key);
         }}

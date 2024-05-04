@@ -3,6 +3,7 @@ import type { UploadProps } from 'antd';
 import { Button, message, Space, Upload, Form } from 'antd';
 import { AxiosErrorData, uploadFile } from '../../service/api';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface NormFileType {
   fileList: File[];
@@ -37,6 +38,7 @@ const uploadProps: UploadProps = {
 };
 
 const FormUploadFile: React.FC = () => {
+  const navigate = useNavigate();
   const [isAllowSubmit, setIsAllowSubmit] = useState<boolean>(false);
 
   const onFinish = (values: FieldType): void => {
@@ -47,8 +49,9 @@ const FormUploadFile: React.FC = () => {
     (async (): Promise<void> => {
       try {
         const repsoneUpload = await uploadFile(values);
-        // console.log(data);
-        // handle success @hoangday185
+        if (repsoneUpload.status == 200) {
+          navigate('/list-product-total');
+        }
         message.success('Upload file success');
       } catch (error) {
         if (error instanceof AxiosError) {
@@ -66,9 +69,8 @@ const FormUploadFile: React.FC = () => {
   };
 
   return (
-    <Form name="validate_other" {...formItemLayout} onFinish={onFinish} style={{ maxWidth: 600 }}>
+    <Form name="validate_other" {...formItemLayout} onFinish={onFinish} style={{ maxWidth: 800 }}>
       <Item<FieldType>
-        label="Dragger"
         name="myFile"
         valuePropName="myFile"
         getValueFromEvent={getFile}
@@ -83,7 +85,7 @@ const FormUploadFile: React.FC = () => {
         </Dragger>
       </Item>
 
-      <Item wrapperCol={{ span: 12, offset: 6 }}>
+      <Item wrapperCol={{ span: 12, offset: 6 }} style={{ marginLeft: 70 }}>
         <Space>
           <Button type="primary" htmlType="submit" disabled={isAllowSubmit}>
             Submit
