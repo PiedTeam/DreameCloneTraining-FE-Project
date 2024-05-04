@@ -58,118 +58,118 @@ const columns: TableProps<UpdateProduct>['columns'] = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    // render: ({ newValue, oldValue }) => (
-    //   <p key={newValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
-    //     {newValue}
-    //   </p>
-    // ),
+    render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
+      <p key={newValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+        {newValue}
+      </p>
+    ),
   },
   {
     title: 'Model',
     dataIndex: 'model',
     key: 'model',
-    // render: ({ newValue, oldValue }) => (
-    //   <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
-    //     {newValue}
-    //   </p>
-    // ),
+    render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+        {newValue}
+      </p>
+    ),
   },
   {
     title: 'Description',
     dataIndex: 'description',
     key: 'description',
-    // render: ({ newValue, oldValue }) => (
-    //   <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
-    //     {newValue}
-    //   </p>
-    // ),
+    render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+        {newValue}
+      </p>
+    ),
   },
   {
     title: 'Price',
     key: 'price',
     dataIndex: 'price',
-    // render: ({ newValue, oldValue }) => (
-    //   <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
-    //     {newValue}
-    //   </p>
-    // ),
+    render: ({ newValue, oldValue }: { newValue: number; oldValue: number }) => (
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+        {newValue}
+      </p>
+    ),
   },
   {
     title: 'Stock quantity',
     dataIndex: 'stock_quantity',
     key: 'stock_quantity',
-    // render: ({ newValue, oldValue }) => (
-    //   <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
-    //     {newValue}
-    //   </p>
-    // ),
+    render: ({ newValue, oldValue }: { newValue: number; oldValue: number }) => (
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+        {newValue}
+      </p>
+    ),
   },
   {
     title: 'Warranty',
     dataIndex: 'warranty',
     key: 'warranty',
-    // render: ({ newValue, oldValue }) => (
-    //   <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
-    //     {newValue}
-    //   </p>
-    // ),
+    render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+        {newValue}
+      </p>
+    ),
   },
   {
     title: 'Weight',
     dataIndex: 'weight',
     key: 'weight',
-    // render: ({ newValue, oldValue }) => (
-    //   <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
-    //     {newValue}
-    //   </p>
-    // ),
+    render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+        {newValue}
+      </p>
+    ),
   },
   {
     title: 'Dimensions',
     dataIndex: 'dimensions',
     key: 'dimensions',
-    // render: ({ newValue, oldValue }) => (
-    //   <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
-    //     {newValue}
-    //   </p>
-    // ),
+    render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+        {newValue}
+      </p>
+    ),
   },
   {
     title: 'Power',
     dataIndex: 'power',
     key: 'power',
-    // render: ({ newValue, oldValue }) => (
-    //   <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
-    //     {newValue}
-    //   </p>
-    // ),
+    render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+        {newValue}
+      </p>
+    ),
   },
   {
     title: 'Color',
     dataIndex: 'color',
     key: 'color',
-    // render: ({ newValue, oldValue }) => (
-    //   <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
-    //     {newValue}
-    //   </p>
-    // ),
+    render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+        {newValue}
+      </p>
+    ),
   },
   {
     title: 'Manufacturer',
     dataIndex: 'manufacturer',
     key: 'manufacturer',
-    // render: ({ newValue, oldValue }: { newValue: string | number; oldValue: string | number }) => (
-    //   <p
-    //     onMouseEnter={(event: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
-    //       return <PopUp oldValue={oldValue} isOpen={event.isTrusted ? true : false} />;
-    //       console.log(event.isTrusted);
-    //     }}
-    //     key={oldValue}
-    //     style={{ color: newValue == oldValue ? 'blue' : 'gray' }}
-    //   >
-    //     {newValue}
-    //   </p>
-    // ),
+    render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
+      <p
+        onMouseEnter={(event: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
+          // return <PopUp oldValue={oldValue} isOpen={event.isTrusted ? true : false} />;
+          console.log(event.isTrusted);
+        }}
+        key={oldValue}
+        style={{ color: newValue == oldValue ? 'blue' : 'gray' }}
+      >
+        {newValue}
+      </p>
+    ),
   },
 ];
 

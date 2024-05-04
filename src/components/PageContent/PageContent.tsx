@@ -2,6 +2,10 @@ import { Content } from 'antd/lib/layout/layout.js';
 import { Route, Routes } from 'react-router-dom';
 import FormUploadFile from '../FormUploadFile/FormUploadFile';
 import { theme } from 'antd';
+import TableListNewProduct from '../Table/TableNewProduct/TableNewProduct';
+import TableListUpdateProduct from '../Table/TableUpdateProduct/TableUpdateProduct';
+import TableListErrorProduct from '../Table/TableErrorProduct/TableErrorProduct';
+import TableTotal from '../Table/TableTotal/TableTotal';
 
 const PageContent = (): JSX.Element => {
   const {
@@ -26,6 +30,10 @@ const PageContent = (): JSX.Element => {
           <Route path="/orders" element={<div>Orders</div>} />
           <Route path="/customer" element={<div>Customer</div>} />
           <Route path="/setting" element={<div>Setting</div>} />
+          <Route path="/list-product-total" element={<TableTotal />} />
+          <Route path="/list-new-product" element={<TableListNewProduct />} />
+          <Route path="/list-update-product" element={<TableListUpdateProduct />} />
+          {/* <Route path="/list-error-product" element={<TableListErrorProduct />} /> */}
         </Routes>
       </div>
     </Content>
