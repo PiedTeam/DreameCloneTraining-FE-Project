@@ -1,7 +1,15 @@
-import MainLayout from './layout/MainLayout/MainLayout';
+import './App.css';
+
+import FormUploadFile from './components/FormUploadFile/FormUploadFile';
 
 function App(): JSX.Element {
-  return <MainLayout />;
+  return (
+    <>
+      <div>
+        <FormUploadFile />
+      </div>
+    </>
+  );
 }
 
 export default App;
