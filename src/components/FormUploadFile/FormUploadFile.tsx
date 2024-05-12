@@ -50,7 +50,7 @@ const FormUploadFile: React.FC = () => {
       try {
         const repsoneUpload = await uploadFile(values);
         if (repsoneUpload.status == 200) {
-          navigate('/list-product-total');
+          navigate('/list-product');
         }
         message.success('Upload file success');
       } catch (error) {
@@ -69,14 +69,14 @@ const FormUploadFile: React.FC = () => {
   };
 
   return (
-    <Form name="validate_other" {...formItemLayout} onFinish={onFinish} style={{ maxWidth: 800 }}>
+    <Form name="validate_other" {...formItemLayout} onFinish={onFinish} style={{ maxWidth: 800, height: 400 }}>
       <Item<FieldType>
         name="myFile"
         valuePropName="myFile"
         getValueFromEvent={getFile}
         rules={[{ required: true, message: 'Please select file to upload' }]}
       >
-        <Dragger {...uploadProps}>
+        <Dragger {...uploadProps} style={{ width: 400, height: '400px' }}>
           {/* <p className="ant-upload-drag-icon">
             <InboxOutlined />
           </p> */}
@@ -85,8 +85,8 @@ const FormUploadFile: React.FC = () => {
         </Dragger>
       </Item>
 
-      <Item wrapperCol={{ span: 12, offset: 6 }} style={{ marginLeft: 70 }}>
-        <Space>
+      <Item wrapperCol={{ span: 12 }} style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <Space style={{ display: 'flex' }}>
           <Button type="primary" htmlType="submit" disabled={isAllowSubmit}>
             Submit
           </Button>

@@ -56,58 +56,111 @@ const columns: TableProps<ProductError>['columns'] = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    render: (text) => <p style={{ color: 'red' }}>{text}</p>,
+    render: ({ value, error }: { value: string; error: string }) => (
+      <p key={value} style={{ color: error ? 'red' : 'gray', textAlign: 'center' }}>
+        {value}
+      </p>
+    ),
   },
   {
     title: 'Model',
     dataIndex: 'model',
     key: 'model',
-    // render: (text) => <p>{text}</p>,
+    render: ({ value, error }: { value: string; error: string }) => (
+      <p key={value} style={{ color: error ? 'red' : 'gray', textAlign: 'center' }}>
+        {value}
+      </p>
+    ),
   },
   {
     title: 'Description',
     dataIndex: 'description',
     key: 'description',
+    render: ({ value, error }: { value: string; error: string }) => (
+      <p key={value} style={{ color: error ? 'red' : 'gray', textAlign: 'center' }}>
+        {value}
+      </p>
+    ),
   },
   {
     title: 'Price',
     key: 'price',
     dataIndex: 'price',
+    render: ({ value, error }: { value: string; error: string }) => (
+      <p key={value} style={{ color: error ? 'red' : 'gray', textAlign: 'center' }}>
+        {value}
+      </p>
+    ),
   },
   {
     title: 'Stock quantity',
     dataIndex: 'stock_quantity',
     key: 'stock_quantity',
+    render: ({ value, error }: { value: string; error: string }) => (
+      <p key={value} style={{ color: error ? 'red' : 'gray', textAlign: 'center' }}>
+        {value}
+      </p>
+    ),
   },
   {
     title: 'Warranty',
     dataIndex: 'warranty',
     key: 'warranty',
+    render: ({ value, error }: { value: string; error: string }) => (
+      <p key={value} style={{ color: error ? 'red' : 'gray', textAlign: 'center' }}>
+        {value}
+      </p>
+    ),
   },
   {
     title: 'Weight',
     dataIndex: 'weight',
     key: 'weight',
+    render: ({ value, error }: { value: string; error: string }) => (
+      <p key={value} style={{ color: error ? 'red' : 'gray', textAlign: 'center' }}>
+        {value}
+      </p>
+    ),
   },
   {
     title: 'Dimensions',
     dataIndex: 'dimensions',
     key: 'dimensions',
+    render: ({ value, error }: { value: string; error: string }) => (
+      <p key={value} style={{ color: error ? 'red' : 'gray', textAlign: 'center' }}>
+        {value}
+      </p>
+    ),
   },
   {
     title: 'Power',
     dataIndex: 'power',
     key: 'power',
+    render: ({ value, error }: { value: string; error: string }) => (
+      <p key={value} style={{ color: error ? 'red' : 'gray', textAlign: 'center' }}>
+        {value}
+      </p>
+    ),
   },
   {
     title: 'Color',
     dataIndex: 'color',
     key: 'color',
+    render: ({ value, error }: { value: string; error: string }) => (
+      <p key={value} style={{ color: error ? 'red' : 'gray', textAlign: 'center' }}>
+        {value}
+      </p>
+    ),
   },
   {
     title: 'Manufacturer',
     dataIndex: 'manufacturer',
     key: 'manufacturer',
+    render: ({ value, error }: { value: string; error: string }) => (
+      <p key={value} style={{ color: error ? 'red' : 'gray', textAlign: 'center' }}>
+        {value}
+      </p>
+    ),
   },
 ];
 

@@ -21,7 +21,6 @@ const columns: TableProps<NewProduct>['columns'] = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    // render: () => <p style={{ color: { error ? "red":"blue"} }}>{text}</p>,
   },
   {
     title: 'Model',
@@ -218,6 +217,10 @@ const listNewProduct: NewProduct[] = [
   },
 ];
 
-const TableListNewProduct: React.FC = () => <Table columns={columns} dataSource={listNewProduct} />;
+const TableListNewProduct: React.FC = () => (
+  <>
+    <Table columns={columns} dataSource={listNewProduct} />
+  </>
+);
 
 export default TableListNewProduct;
