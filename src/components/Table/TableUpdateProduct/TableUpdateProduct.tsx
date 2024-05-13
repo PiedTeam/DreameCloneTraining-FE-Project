@@ -59,7 +59,7 @@ const columns: TableProps<UpdateProduct>['columns'] = [
     dataIndex: 'name',
     key: 'name',
     render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
-      <p key={newValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+      <p key={newValue} style={{ color: newValue == oldValue ? 'blue' : 'gray', textAlign: 'center' }}>
         {newValue}
       </p>
     ),
@@ -69,7 +69,7 @@ const columns: TableProps<UpdateProduct>['columns'] = [
     dataIndex: 'model',
     key: 'model',
     render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
-      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray', textAlign: 'center' }}>
         {newValue}
       </p>
     ),
@@ -79,7 +79,7 @@ const columns: TableProps<UpdateProduct>['columns'] = [
     dataIndex: 'description',
     key: 'description',
     render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
-      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray', textAlign: 'center' }}>
         {newValue}
       </p>
     ),
@@ -89,7 +89,7 @@ const columns: TableProps<UpdateProduct>['columns'] = [
     key: 'price',
     dataIndex: 'price',
     render: ({ newValue, oldValue }: { newValue: number; oldValue: number }) => (
-      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray', textAlign: 'center' }}>
         {newValue}
       </p>
     ),
@@ -99,7 +99,7 @@ const columns: TableProps<UpdateProduct>['columns'] = [
     dataIndex: 'stock_quantity',
     key: 'stock_quantity',
     render: ({ newValue, oldValue }: { newValue: number; oldValue: number }) => (
-      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray', textAlign: 'center' }}>
         {newValue}
       </p>
     ),
@@ -109,7 +109,7 @@ const columns: TableProps<UpdateProduct>['columns'] = [
     dataIndex: 'warranty',
     key: 'warranty',
     render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
-      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray', textAlign: 'center' }}>
         {newValue}
       </p>
     ),
@@ -119,7 +119,7 @@ const columns: TableProps<UpdateProduct>['columns'] = [
     dataIndex: 'weight',
     key: 'weight',
     render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
-      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray', textAlign: 'center' }}>
         {newValue}
       </p>
     ),
@@ -129,7 +129,7 @@ const columns: TableProps<UpdateProduct>['columns'] = [
     dataIndex: 'dimensions',
     key: 'dimensions',
     render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
-      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray', textAlign: 'center' }}>
         {newValue}
       </p>
     ),
@@ -139,7 +139,7 @@ const columns: TableProps<UpdateProduct>['columns'] = [
     dataIndex: 'power',
     key: 'power',
     render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
-      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray', textAlign: 'center' }}>
         {newValue}
       </p>
     ),
@@ -149,7 +149,7 @@ const columns: TableProps<UpdateProduct>['columns'] = [
     dataIndex: 'color',
     key: 'color',
     render: ({ newValue, oldValue }: { newValue: string; oldValue: string }) => (
-      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray' }}>
+      <p key={oldValue} style={{ color: newValue == oldValue ? 'blue' : 'gray', textAlign: 'center' }}>
         {newValue}
       </p>
     ),

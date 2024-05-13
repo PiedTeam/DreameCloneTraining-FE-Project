@@ -14,8 +14,19 @@ const navItems: NavItem[] = [
     key: '/dashboard',
   },
   {
-    label: 'Import product list',
-    key: '/import-products',
+    label: 'Manage product',
+    key: 'manage-products',
+    children: [
+      { label: 'Import product', key: '/import-products' },
+      {
+        label: 'Export product',
+        key: '/export-products',
+      },
+      {
+        label: 'List-product',
+        key: '/list-products',
+      },
+    ],
   },
   {
     label: 'Orders',
@@ -28,18 +39,6 @@ const navItems: NavItem[] = [
   {
     label: 'Settings',
     key: '/setting',
-  },
-  {
-    label: 'List new product',
-    key: '/list-new-product',
-  },
-  {
-    label: 'List update product',
-    key: '/list-update-product',
-  },
-  {
-    label: 'List error product',
-    key: '/list-error-product',
   },
 ];
 
